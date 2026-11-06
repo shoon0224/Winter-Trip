@@ -173,3 +173,47 @@
   }
   .paju-area h3 { font-size: 17px; }
 }
+
+.paju-wait-note {
+  color: #475d65;
+  font-size: 13px;
+}
+.paju-area .place-body .paju-hours {
+  padding: 8px 0;
+  border-top: 1px solid #e6eaea;
+  border-bottom: 1px solid #e6eaea;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.paju-hours > a {
+  color: #234941;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.paju-hours small {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+}
+.paju-area .paju-place-photo { position: relative; }
+.paju-wait {
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  z-index: 1;
+  max-width: 100%;
+  padding: 4px 7px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: #eef2f4;
+  color: #3f515c;
+  box-shadow: 0 1px 5px #142e3933;
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.3;
+  text-decoration: none;
+}
+.paju-wait-estimate { background: #ffe0bc; color: #702e10; }
+.paju-wait-busy { background: #fff0cc; color: #694b15; }
+.paju-wait-open { background: #e1f0ea; color: #214d41; }
+a.paju-wait:hover { text-decoration: underline; }
