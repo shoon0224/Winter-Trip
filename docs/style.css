@@ -103,7 +103,17 @@
   margin: 0;
   min-width: 0;
 }
-.paju-place-photo > a {
+.paju-photo-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: 10px;
+}
+.paju-photo-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
   position: relative;
   display: grid;
   overflow: hidden;
@@ -123,6 +133,31 @@
   color: #31515b;
   font-size: 12px;
   text-align: center;
+}
+.paju-photo-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.paju-photo-controls button {
+  border: 0;
+  border-radius: 6px;
+  background: #e9eff0;
+  color: #234941;
+  font-size: 20px;
+  line-height: 1;
+  width: 32px;
+  height: 30px;
+}
+.paju-photo-controls button:disabled {
+  cursor: default;
+  opacity: .35;
+}
+.paju-photo-count {
+  color: #475d65;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
 }
 .paju-place-photo figcaption {
   margin-top: 5px;
