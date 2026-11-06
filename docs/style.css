@@ -245,3 +245,20 @@ a.paju-wait:hover { text-decoration: underline; }
 .winter-place-copy .winter-tier { margin-top: 0; }
 .winter-detail-link { font-weight: 700; }
 .winter-other .stops a { padding: 8px 12px; }
+
+.winter-budget-note label {
+  display: block;
+  color: #234941;
+  font-weight: 750;
+}
+.winter-budget-note select {
+  max-width: 100%;
+  min-height: 42px;
+  margin: 7px 0;
+  padding: 6px 10px;
+  border: 1px solid #99b3af;
+  border-radius: 8px;
+  background: white;
+  color: #18252c;
+  font: inherit;
+}

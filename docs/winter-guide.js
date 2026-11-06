@@ -10,6 +10,17 @@
     eastcoast: ['포항 · 영덕 · 울진', '일출, 대게, 온천이 있는 해안 코스', ['pohang', 'yeongdeok', 'uljin']],
   };
   const params = new URLSearchParams(location.search);
+  const stayDates = [
+    ['2026-12-25', '2026-12-26', '12/25(금) → 12/26(토)'],
+    ['2026-12-26', '2026-12-27', '12/26(토) → 12/27(일)'],
+    ['2026-12-27', '2026-12-28', '12/27(일) → 12/28(월)'],
+    ['2026-12-28', '2026-12-29', '12/28(월) → 12/29(화)'],
+    ['2026-12-29', '2026-12-30', '12/29(화) → 12/30(수)'],
+    ['2026-12-30', '2026-12-31', '12/30(수) → 12/31(목)'],
+  ];
+  let stay = stayDates.find(([checkin]) => checkin === params.get('stay')) || stayDates[0];
+  const rateLinks = [];
+  const guideLinks = [];
   const requestedCourse = params.get('course');
   const course = Object.hasOwn(courses, requestedCourse) ? requestedCourse : 'gangwon';
   const [title, intro, cityIds] = courses[course];
@@ -36,6 +47,29 @@
     const node = el('a', className, label);
     node.href = url;
     return node;
+  }
+
+  function rateUrl(query) {
+    const [checkin, checkout] = stay;
+    const search = new URLSearchParams({
+      ss: query,
+      checkin,
+      checkout,
+      group_adults: '2',
+      group_children: '0',
+      no_rooms: '1',
+      selected_currency: 'KRW',
+      lang: 'ko',
+    });
+    return `https://www.booking.com/searchresults.ko.html?${search}`;
+  }
+
+  function guideLink(label, courseId, cityId, className) {
+    const query = new URLSearchParams({course: courseId, stay: stay[0]});
+    if (cityId) query.set('city', cityId);
+    const anchor = link(label, `./winter.html?${query}`, className);
+    guideLinks.push(anchor);
+    return anchor;
   }
 
   function photoGallery(place) {
@@ -97,7 +131,10 @@
     const links = el('div', 'stops');
     links.append(link(place.listing ? '주변 후보 지도 ↗' : '지도·영업정보 ↗', mapUrl));
     if (place.kind === 'H') {
-      links.append(link('날짜별 요금 확인 ↗', place.booking || `https://www.google.com/travel/search?q=${encodeURIComponent(query + ' 숙박')}`));
+      const rate = link('선택 날짜 요금 검색 ↗', rateUrl(query));
+      rateLinks.push({rate, query});
+      links.append(rate);
+      if (place.booking) links.append(link('숙소 예약 페이지 ↗', place.booking));
     } else if (!place.photos?.length) {
       links.append(link('장소 사진 검색 ↗', `https://search.naver.com/search.naver?where=image&query=${encodeURIComponent(query)}`));
     }
@@ -115,14 +152,25 @@
   document.querySelector('#winter-intro').textContent = selectedCity ? `${title} 코스 · ${winterPlaces[selectedCity].theme}` : intro;
   main.replaceChildren();
   const overview = el('div', 'note winter-budget-note');
-  overview.append(el('strong', '', '숙소는 2인 1박 예산별로 비교'),
-    el('p', '', '금액은 해당 도시에서 숙소를 고를 때 쓰는 계획용 구간이에요. 카드 속 숙소의 예약가는 날짜·객실·전망에 따라 달라져요. 12월 말 주말과 연휴에는 해당 예산대를 넘을 수 있으니 날짜를 넣고 최종 금액을 확인하세요.'));
+  const stayLabel = el('label', '', '2026년 12월 숙박일 · 성인 2명, 객실 1개');
+  stayLabel.htmlFor = 'winter-stay';
+  const staySelect = el('select');
+  staySelect.id = 'winter-stay';
+  for (const [checkin, , dates] of stayDates) {
+    const option = el('option', '', dates + ' · 1박');
+    option.value = checkin;
+    staySelect.append(option);
+  }
+  staySelect.value = stay[0];
+  overview.append(stayLabel, staySelect,
+    el('p', '', '카드의 금액은 2인 1박 계획 예산이에요. ‘선택 날짜 요금 검색’은 위 날짜와 인원으로 예약 사이트를 열어요. 실제 요금과 빈 객실은 검색 결과에서 확인하세요.'));
   main.append(overview);
 
   const navRow = nav.querySelector('.wrap');
-  if (selectedCity) navRow.append(link('코스 전체', `./winter.html?course=${course}`));
+  if (selectedCity) navRow.append(guideLink('코스 전체', course));
   for (const cityId of cityIds) {
-    const cityLink = link(winterPlaces[cityId].name, selectedCity ? `./winter.html?course=${course}&city=${cityId}` : `#${cityId}`);
+    const cityName = winterPlaces[cityId].name;
+    const cityLink = selectedCity ? guideLink(cityName, course, cityId) : link(cityName, `#${cityId}`);
     if (cityId === selectedCity) cityLink.setAttribute('aria-current', 'page');
     navRow.append(cityLink);
   }
@@ -132,7 +180,7 @@
     section.id = cityId;
     section.append(el('div', 'section-kicker', city.theme), el('h2', '', city.name), el('p', 'lead', city.tip));
     if (!selectedCity) {
-      section.append(link(`${city.name}만 보기 ↗`, `./winter.html?course=${course}&city=${cityId}`, 'action'));
+      section.append(guideLink(`${city.name}만 보기 ↗`, course, cityId, 'action'));
     }
     for (const [kind, label] of groups) {
       const group = el('div', 'winter-place-group');
@@ -152,10 +200,23 @@
   other.append(el('h2', '', '다른 겨울 코스 둘러보기'));
   const choices = el('div', 'stops');
   for (const [id, [name]] of Object.entries(courses)) {
-    if (name !== title) choices.append(link(name, `./winter.html?course=${id}`));
+    if (name !== title) choices.append(guideLink(name, id));
   }
   other.append(choices);
   main.append(other);
+
+  staySelect.addEventListener('change', () => {
+    stay = stayDates.find(([checkin]) => checkin === staySelect.value);
+    const currentUrl = new URL(location.href);
+    currentUrl.searchParams.set('stay', stay[0]);
+    history.replaceState(null, '', currentUrl);
+    for (const {rate, query} of rateLinks) rate.href = rateUrl(query);
+    for (const anchor of guideLinks) {
+      const target = new URL(anchor.href);
+      target.searchParams.set('stay', stay[0]);
+      anchor.href = target;
+    }
+  });
 
   const cityAnchor = location.hash.slice(1);
   if (cityIds.includes(cityAnchor)) document.getElementById(cityAnchor)?.scrollIntoView();
