@@ -53,3 +53,41 @@
   color: white;
 }
 .paju-main [hidden] { display: none; }
+
+#paju-map {
+  height: clamp(300px, 55vh, 520px);
+  border: 1px solid #dce3e5;
+  border-radius: 16px;
+}
+.paju-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.paju-map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+#paju-map-panel [data-kind="볼거리"] { --pin-color: #166354; }
+#paju-map-panel [data-kind="식사"] { --pin-color: #a74525; }
+#paju-map-panel [data-kind="카페"] { --pin-color: #653b8c; }
+.paju-map-legend span::before,
+.paju-map-pin span {
+  background: var(--pin-color);
+  border-radius: 50%;
+}
+.paju-map-legend span::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+}
+.paju-map-pin span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+  box-shadow: 0 1px 5px #142e3980;
+}
