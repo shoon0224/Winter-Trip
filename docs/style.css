@@ -91,3 +91,50 @@
   border: 2px solid white;
   box-shadow: 0 1px 5px #142e3980;
 }
+
+.paju-area .place-body:not([hidden]) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 46%);
+  gap: 14px;
+  align-items: start;
+}
+.paju-area .place-body .tags { margin-top: 0; }
+.paju-place-photo {
+  margin: 0;
+  min-width: 0;
+}
+.paju-place-photo > a {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 4 / 3;
+  background: #e9eff0;
+  text-decoration: none;
+}
+.paju-place-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.paju-photo-fallback {
+  place-self: center;
+  padding: 8px;
+  color: #31515b;
+  font-size: 12px;
+  text-align: center;
+}
+.paju-place-photo figcaption {
+  margin-top: 5px;
+  color: #475d65;
+  font-size: 11px;
+  text-align: right;
+}
+@media (max-width: 420px) {
+  .paju-area .place-body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 43%);
+    gap: 10px;
+    padding: 14px;
+  }
+  .paju-area h3 { font-size: 17px; }
+}

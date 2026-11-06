@@ -85,3 +85,12 @@ function createMapPins() {
   fit();
   return {group, places, fit};
 }
+
+for (const photo of document.querySelectorAll('.paju-place-photo img')) {
+  const showFallback = () => {
+    photo.hidden = true;
+    photo.nextElementSibling.hidden = false;
+  };
+  photo.addEventListener('error', showFallback);
+  if (photo.complete && photo.naturalWidth === 0) showFallback();
+}
