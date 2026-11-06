@@ -67,7 +67,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20180524_134%2F1527139711033E1lDj_JPEG%2FLGpXRDc9HTju0DRkmwbSDT20.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/1200727361/photo",
-        "placeId": "1200727361"
+        "placeId": "1200727361",
+        "booking": "https://nol.yanolja.com/stay/domestic/3013409"
       },
       {
         "kind": "H",
@@ -79,7 +80,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250402_237%2F1743575896448Wzl3g_JPEG%2FBeach_on_The_Cloud_01_M.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/36534206/photo",
-        "placeId": "36534206"
+        "placeId": "36534206",
+        "booking": "https://nol.yanolja.com/stay/domestic/3001494"
       }
     ],
     "budget": [
@@ -243,7 +245,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190711_56%2F1562814512132i3Ixp_JPEG%2F2WV1LJgWGAPidJIi0Ee3Q2Br.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/512038700/photo",
-        "placeId": "512038700"
+        "placeId": "512038700",
+        "booking": "https://app.lottehotel.com/resort-sokcho/ko"
       },
       {
         "kind": "H",
@@ -255,7 +258,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240711_296%2F1720668561484BLpt4_JPEG%2FPremier_King%25282%2529_%25BC%25F6%25C1%25A4.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/1904120106/photo",
-        "placeId": "1904120106"
+        "placeId": "1904120106",
+        "booking": "https://nol.yanolja.com/stay/domestic/10056999"
       }
     ],
     "budget": [
@@ -488,7 +492,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190628_121%2F1561687583314LgIC5_JPEG%2F%25C7%25C1%25B7%25D0%25C6%25AE.JPG"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/1035139621/photo",
-        "placeId": "1035139621"
+        "placeId": "1035139621",
+        "booking": "https://nol.yanolja.com/stay/domestic/1000099499"
       },
       {
         "kind": "H",
@@ -573,7 +578,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20191016_109%2F1571237137724rgY74_JPEG%2Fo5XOgSljX6NdoCwk3H7Og0AV.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/1458535515/photo",
-        "placeId": "1458535515"
+        "placeId": "1458535515",
+        "booking": "https://nol.yanolja.com/stay/domestic/3014238"
       },
       {
         "kind": "H",
@@ -585,7 +591,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240731_5%2F1722392606899fQyL2_JPEG%2F%25BC%25F6%25C1%25A4%25B5%25CA_curmcu.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/1906617930/photo",
-        "placeId": "1906617930"
+        "placeId": "1906617930",
+        "booking": "https://nol.yanolja.com/stay/domestic/3000925"
       }
     ]
   },
@@ -748,7 +755,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240520_200%2F1716166553326XFCGH_JPEG%2F1%2529_%25B8%25DE%25C0%25CE_%25BB%25E7%25B0%25E8%25C0%25FD_%25BF%25C2%25BC%25F6%25C7%25AE1.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/12348587/photo",
-        "placeId": "12348587"
+        "placeId": "12348587",
+        "booking": "https://www.yeogi.com/domestic-accommodations/6766"
       }
     ],
     "budget": [
@@ -834,7 +842,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231211_64%2F1702272633198Dwl5A_JPEG%2F%25B0%25F8%25BD%25C4_%25C1%25A6%25C1%25D6%25C8%25A3%25C5%25DA_%25BE%25EE%25B4%25FA%25C6%25AE%25C7%25AE_7%25BF%25F9.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/11583210/photo",
-        "placeId": "11583210"
+        "placeId": "11583210",
+        "booking": "https://www.yeogi.com/domestic-accommodations/8593"
       }
     ],
     "budget": [
@@ -980,7 +989,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200630_265%2F1593497603826TyY1v_JPEG%2FX8vO__XEACFMTWNvAi21hhTJ.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/12877138/photo",
-        "placeId": "12877138"
+        "placeId": "12877138",
+        "booking": "https://nol.yanolja.com/stay/domestic/1000108148"
       },
       {
         "kind": "H",
@@ -1224,7 +1234,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190214_44%2F15501232354937jNz7_JPEG%2F%25BF%25DC%25B0%25FC_%25BD%25BA%25C5%25C4%25C6%25F7%25B5%25E5_%25C8%25A3%25C5%25DA%25BE%25D8%25B8%25AE%25C1%25B6%25C6%25AE2.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/1104350668/photo",
-        "placeId": "1104350668"
+        "placeId": "1104350668",
+        "booking": "https://nol.yanolja.com/stay/domestic/3012725"
       },
       {
         "kind": "H",
@@ -1316,7 +1327,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240812_269%2F1723420140536SfOyU_JPEG%2F%25B0%25C5%25C1%25A6%25BF%25E4%25C6%25AE1.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/20010307/photo",
-        "placeId": "20010307"
+        "placeId": "20010307",
+        "booking": "https://nol.yanolja.com/stay/domestic/3000935"
       }
     ]
   },
@@ -1392,7 +1404,7 @@ const winterPlaces = {
         ],
         "photoCredit": "아난티",
         "photoSource": "https://ananti.kr/ko/namhae/specialOffer/D030104?pageId=1033",
-        "booking": "https://www.yeogi.com/domestic-accommodations/78899"
+        "booking": "https://nol.yanolja.com/stay/domestic/10056125"
       }
     ],
     "budget": [
@@ -1615,7 +1627,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200303_208%2F1583198379346ibGLj_JPEG%2F1oOIQPiKkWR4erIJl2_aafe8.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/1080282101/photo",
-        "placeId": "1080282101"
+        "placeId": "1080282101",
+        "booking": "https://nol.yanolja.com/stay/domestic/3001252"
       },
       {
         "kind": "H",
@@ -1680,7 +1693,8 @@ const winterPlaces = {
           "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fnaverbooking-phinf.pstatic.net%2F20240307_129%2F1709799684216LtQGG_JPEG%2F02.%25B7%25B9%25BD%25BA%25C5%25E4%25B6%25FB.jpg"
         ],
         "photoSource": "https://m.place.naver.com/accommodation/1708014993/photo",
-        "placeId": "1708014993"
+        "placeId": "1708014993",
+        "booking": "https://nol.yanolja.com/stay/domestic/10045581"
       },
       {
         "kind": "H",

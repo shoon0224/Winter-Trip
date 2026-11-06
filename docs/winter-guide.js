@@ -20,6 +20,7 @@
   ];
   let stay = stayDates.find(([checkin]) => checkin === params.get('stay')) || stayDates[0];
   const rateLinks = [];
+  const bookingDates = [];
   const guideLinks = [];
   const requestedCourse = params.get('course');
   const course = Object.hasOwn(courses, requestedCourse) ? requestedCourse : 'gangwon';
@@ -49,8 +50,27 @@
     return node;
   }
 
-  function rateUrl(query) {
+  function rateUrl(query, platform, directUrl) {
     const [checkin, checkout] = stay;
+    if (platform === 'NOL') {
+      const url = new URL(directUrl);
+      url.searchParams.set('checkInDate', checkin);
+      url.searchParams.set('checkOutDate', checkout);
+      url.searchParams.set('adultCount', '2');
+      return url.href;
+    }
+    if (platform === 'Trip.com') {
+      const search = new URLSearchParams({
+        searchWord: query,
+        checkin,
+        checkout,
+        adult: '2',
+        children: '0',
+        crn: '1',
+        curr: 'KRW',
+      });
+      return `https://kr.trip.com/hotels/list?${search}`;
+    }
     const search = new URLSearchParams({
       ss: query,
       checkin,
@@ -62,6 +82,13 @@
       lang: 'ko',
     });
     return `https://www.booking.com/searchresults.ko.html?${search}`;
+  }
+
+  function bookingPlatform(url) {
+    const {hostname} = new URL(url);
+    if (hostname === 'www.yeogi.com') return '여기어때';
+    if (hostname === 'nol.yanolja.com') return 'NOL';
+    return '공식 사이트';
   }
 
   function guideLink(label, courseId, cityId, className) {
@@ -130,15 +157,38 @@
     copy.append(el('h4', '', place.name), el('p', '', place.note));
     const links = el('div', 'stops');
     links.append(link(place.listing ? '주변 후보 지도 ↗' : '지도·영업정보 ↗', mapUrl));
-    if (place.kind === 'H') {
-      const rate = link('선택 날짜 요금 검색 ↗', rateUrl(query));
-      rateLinks.push({rate, query});
-      links.append(rate);
-      if (place.booking) links.append(link('숙소 예약 페이지 ↗', place.booking));
-    } else if (!place.photos?.length) {
+    if (place.kind !== 'H' && !place.photos?.length) {
       links.append(link('장소 사진 검색 ↗', `https://search.naver.com/search.naver?where=image&query=${encodeURIComponent(query)}`));
     }
     copy.append(links);
+
+    if (place.kind === 'H') {
+      const booking = el('div', 'winter-booking');
+      const dates = el('small', '', stay[2] + ' · 성인 2명');
+      bookingDates.push(dates);
+      const platforms = el('div', 'winter-booking-platforms');
+      for (const platform of ['Booking.com', 'Trip.com']) {
+        const rate = link(platform + ' ↗', rateUrl(query, platform));
+        rate.setAttribute('aria-label', `${place.name} ${platform} 선택 날짜 요금 검색`);
+        rateLinks.push({rate, query, platform});
+        platforms.append(rate);
+      }
+      booking.append(el('strong', '', '요금·빈 객실 확인'), dates, platforms);
+
+      if (place.booking) {
+        const platform = bookingPlatform(place.booking);
+        if (platform === 'NOL') {
+          const rate = link('NOL 숙소 예약 ↗', rateUrl(query, platform, place.booking));
+          rate.setAttribute('aria-label', `${place.name} NOL 선택 날짜 예약`);
+          rateLinks.push({rate, query, platform, directUrl: place.booking});
+          platforms.append(rate);
+        } else {
+          const direct = link(platform + ' 숙소 페이지 ↗', place.booking);
+          booking.append(direct, el('small', '', '숙소 페이지에서 날짜 직접 선택'));
+        }
+      }
+      copy.append(booking);
+    }
     card.append(copy);
     if (place.photos?.length) {
       card.classList.add('winter-with-photo');
@@ -163,7 +213,7 @@
   }
   staySelect.value = stay[0];
   overview.append(stayLabel, staySelect,
-    el('p', '', '카드의 금액은 2인 1박 계획 예산이에요. ‘선택 날짜 요금 검색’은 위 날짜와 인원으로 예약 사이트를 열어요. 실제 요금과 빈 객실은 검색 결과에서 확인하세요.'));
+    el('p', '', '카드 금액은 2인 1박 계획 예산이에요. Booking.com·Trip.com과 일부 카드의 NOL 예약 링크에 위 날짜와 인원이 적용돼요. 플랫폼별 최종 요금과 빈 객실을 비교해 보세요.'));
   main.append(overview);
 
   const navRow = nav.querySelector('.wrap');
@@ -210,7 +260,8 @@
     const currentUrl = new URL(location.href);
     currentUrl.searchParams.set('stay', stay[0]);
     history.replaceState(null, '', currentUrl);
-    for (const {rate, query} of rateLinks) rate.href = rateUrl(query);
+    for (const {rate, query, platform, directUrl} of rateLinks) rate.href = rateUrl(query, platform, directUrl);
+    for (const dates of bookingDates) dates.textContent = stay[2] + ' · 성인 2명';
     for (const anchor of guideLinks) {
       const target = new URL(anchor.href);
       target.searchParams.set('stay', stay[0]);
