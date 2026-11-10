@@ -292,3 +292,33 @@ a.paju-wait:hover { text-decoration: underline; }
   font-weight: 700;
   text-decoration: none;
 }
+
+.gn-hero::before {
+  background: linear-gradient(110deg, #102c37, #28576d 68%, #4c7181);
+}
+.gn-stay-grid { grid-template-columns: minmax(0, 680px); }
+.gn-itinerary ol {
+  margin: 10px 0;
+  padding-left: 18px;
+  color: #405660;
+  font-size: 14px;
+}
+.gn-itinerary li + li { margin-top: 8px; }
+.gn-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+.gn-days span {
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.gn-day-open { background: #e1f0ea; color: #214d41; }
+.gn-day-closed { background: #ffe4df; color: #8a3025; }
+.gn-day-check { background: #fff0cc; color: #694b15; }
+.gn-filters { margin-top: 12px; }
+#paju-map-panel [data-kind="숙소"] { --pin-color: #143e76; }
+.gn-main .paju-area[hidden] { display: none; }
